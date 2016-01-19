@@ -1,0 +1,24 @@
+<ion-view view-title="{{cine.nombre}}">
+<ion-content>
+<div class="list card">
+
+  <div class="item item-avatar">
+    <img src="mcfly.jpg">
+    <h2>{{pelicula.nombre}}</h2>
+    <p>November 05, 1955</p>
+  </div>
+
+  <div class="item item-body">
+    <img class="medium-image imagen-pelicula" ng-src="{{pelicula.imagen}}" />
+    <p>
+      {{pelicula.descripcion}}
+    </p>
+    <p>
+      <a href="#" class="subdued">1 Like</a>
+      <a href="#" class="subdued">5 Comments</a>
+    </p>
+  </div>
+
+</div>
+</ion-content>
+</ion-view>

@@ -1,0 +1,9 @@
+<ion-view view-title="{{cine.nombre}}">
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="pelicula in peliculas" ui-sref="app.Pelicula({peliculaID:pelicula.idPelicula})">
+        {{pelicula.nombrePelicula}}
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
