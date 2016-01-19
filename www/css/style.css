@@ -1,4 +1,22 @@
 /* Empty. Add your own CSS if you like */
 .imagen-pelicula{
 	float: left;
+	margin: 10px;
+}
+b{
+	text-align: center;
+}
+.row-stable{
+	background-color: #F2EFFB;
+}
+.comentarios{
+	padding: 3%;
+}
+.comentarios h2,.comentarios p,.comentarios h6{
+	margin-bottom: -10px;
+}
+.comentarios h2{
+	margin-top: -5px;
+	color: white;
+	background-color: blue;
 }

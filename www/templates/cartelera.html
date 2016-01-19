@@ -1,8 +1,15 @@
 <ion-view view-title="{{cine.nombre}}">
   <ion-content>
     <ion-list>
-      <ion-item ng-repeat="pelicula in peliculas" ui-sref="app.Pelicula({peliculaID:pelicula.idPelicula})">
-        {{pelicula.nombrePelicula}}
+      <ion-item>
+        <div class="list" ng-repeat="pelicula in peliculas" ui-sref="app.Pelicula({peliculaID:pelicula.idPelicula})">
+    		<a class="item item-thumbnail-left item-icon-right" href="#">
+      		<img ng-src="{{pelicula.imagen}}">
+      		<h2>{{pelicula.nombrePelicula}}</h2>
+      		<p>Lorem ipsum dolor sit <br>amet, consectetur <br> adipisicing elit.</p>
+      		<i class="icon ion-android-arrow-dropright-circle icon-large item-icon-right"></i>
+    	</a>
+	</div>
       </ion-item>
     </ion-list>
   </ion-content>

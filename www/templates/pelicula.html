@@ -3,9 +3,15 @@
 <div class="list card">
 
   <div class="item item-avatar">
-    <img src="mcfly.jpg">
+    <img class="medium-image" ng-src="{{pelicula.imagen}}" />
     <h2>{{pelicula.nombre}}</h2>
-    <p>November 05, 1955</p>
+    <p>{{fechaHoy}}</p>
+    <select>
+      <option ng-repeat="funcion in funciones">{{funcion.horaFuncion}} - {{funcion.sala}}</option>
+    </select>
+    <button class="button button-positive" style="margin-left: 10%;" ui-sref="app.Reserva({funcionID:funcion.idFuncion})">
+      Reservar
+    </button>
   </div>
 
   <div class="item item-body">
@@ -13,11 +19,43 @@
     <p>
       {{pelicula.descripcion}}
     </p>
+    <div class="row row-stable">
+      <div class="col col-50 center"><b>Formato</b></div>
+      <div class="col col-50">{{pelicula.formato}}</div>
+    </div>
+    <div class="row">      
+      <div class="col col-50 center"><b>Idioma</b></div>
+      <div class="col col-50">{{pelicula.lenguaje}}</div>
+    </div>
+    <div class="row row-stable">      
+      <div class="col col-50 center"><b>Genero</b></div>
+      <div class="col col-50">{{pelicula.genero}}</div>
+    </div>
+    <div class="row">      
+      <div class="col col-50 center"><b>País</b></div>
+      <div class="col col-50">{{pelicula.pais}}</div>
+    </div>
+    <div class="row row-stable">      
+      <div class="col col-50 center"><b>Clasificación</b></div>
+      <div class="col col-50">{{pelicula.censura}}</div>
+    </div>
+    <div class="row">      
+      <div class="col col-50 center"><b>Director</b></div>
+      <div class="col col-50">{{pelicula.director}}</div>
+    </div>
+    <div class="row row-stable">      
+      <div class="col col-50 center"><b>Reparto</b></div>
+      <div class="col col-50"><span ng-repeat="r in pelicula.reparto">{{r.nombre}} <br></span></div>
+    </div>
     <p>
-      <a href="#" class="subdued">1 Like</a>
-      <a href="#" class="subdued">5 Comments</a>
+      <a href="#" class="subdued">3 veces compartido</a>
+      <a href="#" class="subdued" ng-click="verComentarios()">4 Comentarios</a>
     </p>
-  </div>
+    <div class="list comentarios" ng-repeat="comentario in pelicula.comentarios" ng-show="!verComentarios">
+      <h2>{{comentario.autor}}</h2>
+      <p>{{comentario.texto}}</p>
+      <h6>{{comentario.fecha}}</h6>
+    </div>
 
 </div>
 </ion-content>
