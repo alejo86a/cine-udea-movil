@@ -45,10 +45,15 @@
         
             
         };
+
+        $scope.setFuncion = function(id){
+
+            $scope.id_funcion=id;
+            console.log("_______________");
+            console.log(id);
+        }
         
-        $scope.login = function () {
-            loginModal();
-        };
+          
 
         $scope.verComentarios = function(){$scope.mostrarComentarios=!$scope.mostrarComentarios
             

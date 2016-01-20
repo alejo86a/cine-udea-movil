@@ -6,10 +6,10 @@
     <img class="medium-image" ng-src="{{pelicula.imagen}}" />
     <h2>{{pelicula.nombre}}</h2>
     <p>{{fechaHoy}}</p>
-    <select>
-      <option ng-repeat="funcion in funciones">{{funcion.horaFuncion}} - {{funcion.sala}}</option>
+    <select ng-options="funcion.horaFuncion+' - '+funcion.sala for funcion in funciones"  ng-model="id_funcion" >
+      
     </select>
-    <button class="button button-positive" style="margin-left: 10%;" ui-sref="app.Reserva({funcionID:funcion.idFuncion})">
+    <button class="button button-positive" style="margin-left: 10%;" ui-sref="app.Reserva({funcionID:id_funcion.idFuncion})">    
       Reservar
     </button>
   </div>

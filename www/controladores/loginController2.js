@@ -4,13 +4,6 @@
     app.controller('loginController2',function ($scope,$state,$http, Auth, $location, loginModal) {
         $scope.usuario= {};
         $scope.errors = {};
-        /*
-        loginModal
-            .init( $scope)
-                .then(function(modal) {
-                    $scope._modal = modal;
-            });
-        */
         $scope.login=function (form) {
             $scope.submitted = true;
             

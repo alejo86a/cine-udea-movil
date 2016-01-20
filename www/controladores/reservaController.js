@@ -6,7 +6,7 @@
        $scope.currentUser= Auth.getCurrentUser
        
        
-       $scope.idFuncion = $stateParams.funcionID;
+       $scope.idFuncion = $state.params.funcionID;
        
       
        $scope.llenarDatos = function () {
@@ -14,7 +14,7 @@
             $scope.sala = {
                filas:[]
             }
-            $http.get('/api/funcion/'+$scope.idFuncion).success(function (funcion) {
+            $http.get('https://cine-u-de-a-cposada23.c9users.io/api/funcion/'+$scope.idFuncion).success(function (funcion) {
                 $scope.funcion = funcion;
                 $scope.boletas = funcion.boletas;
                 var silla = {};
@@ -83,7 +83,7 @@
         
         $scope.reservar = function () {
             if ($scope.reserva.length!= 0){
-               $http.post('/api/boleta/reservar', {reserva: $scope.reserva}).success(function (reserva) {
+               $http.post('https://cine-u-de-a-cposada23.c9users.io/api/boleta/reservar', {reserva: $scope.reserva}).success(function (reserva) {
                    console.log("Reserva "+ JSON.stringify(reserva));
                    $scope.llenarDatos();
                }).error(function (error) {
@@ -102,7 +102,7 @@
         $scope.cancelarReserva = function (id) {
             console.log("cancelando "+ id);
             
-            $http.post('/api/boleta/cancelar', {boleta: id}).success(function (response) {
+            $http.post('https://cine-u-de-a-cposada23.c9users.io/api/boleta/cancelar', {boleta: id}).success(function (response) {
                 console.log("cancelad " +  JSON.stringify(response));
                 var i = $scope.reservas.indexOf(id);
                 console.log("i "+ i);
@@ -115,7 +115,7 @@
         };
         
         $scope.misReservas = function () {
-            $http.get('/api/boleta/misBoletas/'+$scope.idFuncion).success(function(reservas) {
+            $http.get('https://cine-u-de-a-cposada23.c9users.io/api/boleta/misBoletas/'+$scope.idFuncion).success(function(reservas) {
                 if(reservas.length!=0){
                     $scope.reservas = reservas;
                 }else{

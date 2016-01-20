@@ -61,9 +61,18 @@ angular.module('cineUdea', ['ionic', 'cineUdea.controllers', 'ui.router', 'ngCoo
       views: {
           'menuContent':{
             templateUrl: "templates/pelicula.html",
-            controller:"peliculaController",
+            controller:"peliculaController"
               }
           }
+        })
+  .state('app.Reserva',{
+            url:"/reserva/:funcionID",
+            authenticate:true,
+            views:{
+              'menuContent':{
+              templateUrl:"templates/reserva.html",
+              controller:"reservaController"
+            }}
         })
 
   .state('app.browse', {
@@ -89,4 +98,59 @@ angular.module('cineUdea', ['ionic', 'cineUdea.controllers', 'ui.router', 'ngCoo
             }
             
         };
-    });
+    })
+.run(function ($rootScope, $location, Auth, $state, loginModal) {
+
+        $rootScope.modalAbierto = false;
+        // Redirige al login si la ruta require autenticación
+        $rootScope.$on('$stateChangeStart', function (event, next , toParams) {
+            Auth.isLoggedInAsync(function (loggedIn) {
+                if(next.authenticate && !loggedIn){
+                    //$state.transitionTo("Login");
+                    event.preventDefault();
+                    
+                    if(!$rootScope.modalAbierto){
+                        loginModal
+                      .init( $rootScope)
+                        .then(function(modal) {
+                          modal.show();
+                          $rootScope._modal = modal;
+                          console.log("----------");
+                          });
+                        $rootScope.modalAbierto = true;
+                    }
+                    
+                    setTimeout(function(){
+                      if(Auth.isLoggedIn) {
+                        console.log("por el then");
+                        console.log("to params" + toParams)
+                        return $state.go(next.name, toParams);
+                    }else {
+                        console.log("por el catch")
+                        return $state.go('/');
+                    };
+                  }, 3000);    
+
+                    
+                    
+                }
+            });
+            
+        });
+  $rootScope.logout = function () {
+    console.log("logg out");
+    Auth.logout();
+    $location.path('/');
+  };
+
+
+  $rootScope.login = function() {
+    $rootScope._modal.show();
+    console.log(loginModal.init.openModal);
+  };
+
+  $rootScope.closeLogin = function() {
+    $rootScope._modal.hide(); 
+  };
+
+    });;
