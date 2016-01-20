@@ -4,7 +4,6 @@
     app.controller('navController',['$scope','$state','$http','Auth','$location','registroModal' ,'loginModal',function ($scope,$state,$http,Auth,$location, registroModal,loginModal) {
        $scope.isLoggedIn = Auth.isLoggedIn;
        $scope.getCurrentUser= Auth.getCurrentUser;
-     
         //listar cines
         $http.get('/api/cinema').success(function (cines) {
             console.log("correcto");

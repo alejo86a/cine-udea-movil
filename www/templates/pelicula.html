@@ -51,7 +51,7 @@
       <a href="#" class="subdued">3 veces compartido</a>
       <a href="#" class="subdued" ng-click="verComentarios()">4 Comentarios</a>
     </p>
-    <div class="list comentarios" ng-repeat="comentario in pelicula.comentarios" ng-show="!verComentarios">
+    <div class="list comentarios" ng-repeat="comentario in pelicula.comentarios" ng-show="mostrarComentarios">
       <h2>{{comentario.autor}}</h2>
       <p>{{comentario.texto}}</p>
       <h6>{{comentario.fecha}}</h6>

@@ -18,12 +18,14 @@
     </ion-header-bar>
     <ion-content>
       <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
+        <ion-item menu-close ng-click="login()" ng-show="!isLoggedIn()">
+          Ingresar
         </ion-item>
-   <ion-item menu-close ng-repeat="cine in cines" ui-sref="app.Cartelera({cineID:cine._id ,carteleraID:cine.cartelera})">
+          <ion-item menu-close ng-repeat="cine in cines" ui-sref="app.Cartelera({cineID:cine._id ,carteleraID:cine.cartelera})">
           {{cine.nombre}}
         </ion-item>
+        <ion-item menu-close ng-click="logout()" ng-show="isLoggedIn()">
+          Salir
         </ion-item>
       </ion-list>
     </ion-content>

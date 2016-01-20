@@ -1,45 +1,35 @@
 (function () {
     var app = angular.module('cineUdea');
     
-    app.controller('loginController2',['$scope','$state','$http','Auth','$location','usSpinnerService','$uibModalInstance','registroModal', function ($scope,$state,$http, Auth, $location, usSpinnerService, $uibModalInstance, registroModal) {
+    app.controller('loginController2',function ($scope,$state,$http, Auth, $location, loginModal) {
         $scope.usuario= {};
         $scope.errors = {};
-        
-        $scope.cancelar = function () {
-            $uibModalInstance.dismiss('cancel');
-        }
-        
+        /*
+        loginModal
+            .init( $scope)
+                .then(function(modal) {
+                    $scope._modal = modal;
+            });
+        */
         $scope.login=function (form) {
             $scope.submitted = true;
-            usSpinnerService.spin('spinner-1');
             
             
             if(form.$valid){
-                usSpinnerService.spin('spinner-1');
                 Auth.login({
                     email: $scope.usuario.email,
                     password: $scope.usuario.password
                 }).then(function () {
                     console.log("Login exitoso------");
-                    usSpinnerService.stop('spinner-1');
-                    $uibModalInstance.close();
+                    $scope.closeLogin();
                     //$location.path('/');
                 }).catch(function (err) {
-                    usSpinnerService.stop('spinner-1');
                     $scope.errors.other = err.message;
                 });
-            }else{
-                usSpinnerService.stop('spinner-1');
             }
         };
         
-        $scope.registro = function () {
-            $uibModalInstance.dismiss('cancel');
-            registroModal();
-            
-        };
-        
-    }]);
+    });
     
 }());
     

@@ -8,7 +8,7 @@
         console.log(localStorage);
         $scope.nuevoComentario="";
         $scope.fechaHoy = Date();
-        
+
         $http.get('https://cine-u-de-a-cposada23.c9users.io/api/pelicula/'+$scope.peliculaid).success(function (pelicula) {
             console.log("pelicula" + JSON.stringify(pelicula));
             $scope.pelicula = pelicula;
@@ -50,12 +50,8 @@
             loginModal();
         };
 
-        $scope.verComentarios = function(){
-            if($scope.verComentarios){
-                $scope.verComentarios = false;
-            }else{
-                $scope.verComentarios = true;
-            }
+        $scope.verComentarios = function(){$scope.mostrarComentarios=!$scope.mostrarComentarios
+            
         };
         
         

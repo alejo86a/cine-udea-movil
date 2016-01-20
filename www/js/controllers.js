@@ -1,24 +1,22 @@
 angular.module('cineUdea.controllers', [])
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, $http) {
+.controller('AppCtrl', function($scope, $state, $http, Auth, $location, $ionicModal, $timeout, loginModal) {
 
-  // With the new view caching in Ionic, Controllers are only called
-  // when they are recreated or on app start, instead of every page change.
-  // To listen for when this page is active (for example, to refresh data),
-  // listen for the $ionicView.enter event:
-  //$scope.$on('$ionicView.enter', function(e) {
-  //});
+  $scope.isLoggedIn = Auth.isLoggedIn;
+  $scope.getCurrentUser= Auth.getCurrentUser;
+
 
   // Form data for the login modal
   $scope.loginData = {};
 
+  /*
   // Create the login modal that we will use later
   $ionicModal.fromTemplateUrl('templates/login.html', {
     scope: $scope
   }).then(function(modal) {
     $scope.modal = modal;
   });
-
+  
   // Triggered in the login modal to close it
   $scope.closeLogin = function() {
     $scope.modal.hide();
@@ -39,6 +37,28 @@ angular.module('cineUdea.controllers', [])
       $scope.closeLogin();
     }, 1000);
   };
+  */
+
+  loginModal
+    .init( $scope)
+      .then(function(modal) {
+        $scope._modal = modal;
+      });
+  $scope.logout = function () {
+    console.log("logg out");
+    Auth.logout();
+    $location.path('/');
+  };
+
+
+  $scope.login = function() {
+    $scope._modal.show();
+    console.log(loginModal.init.openModal);
+  };
+
+  $scope.closeLogin = function() {
+    $scope._modal.hide(); 
+  };
 
   //listar cines
         $http.get('https://cine-u-de-a-cposada23.c9users.io/api/cinema').success(function (cines) {
@@ -49,18 +69,4 @@ angular.module('cineUdea.controllers', [])
             console.error(error);
         });
   
-})
-
-.controller('PlaylistsCtrl', function($scope) {
-  $scope.playlists = [
-    { title: 'Reggae', id: 1 },
-    { title: 'Chill', id: 2 },
-    { title: 'Dubstep', id: 3 },
-    { title: 'Indie', id: 4 },
-    { title: 'Rap', id: 5 },
-    { title: 'Cowbell', id: 6 }
-  ];
-})
-
-.controller('PlaylistCtrl', function($scope, $stateParams) {
 });

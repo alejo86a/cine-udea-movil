@@ -23,6 +23,7 @@ angular.module('cineUdea', ['ionic', 'cineUdea.controllers', 'ui.router', 'ngCoo
 })
 
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+  $httpProvider.interceptors.push('authInterceptor');
   $stateProvider
 
     .state('app', {
@@ -76,4 +77,16 @@ angular.module('cineUdea', ['ionic', 'cineUdea.controllers', 'ui.router', 'ngCoo
 
   // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/app/browse');
-});
+})
+.factory('authInterceptor' , function ($rootScope,$q,$cookieStore , $location) {
+        return {
+            request: function (config) {
+                config.headers = config.headers||{};
+                if($cookieStore.get('token')){
+                    config.headers.Authorization = 'Bearer '+ $cookieStore.get('token');
+                }
+                return config;
+            }
+            
+        };
+    });
