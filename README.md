@@ -1,25 +1,36 @@
-Ionic App Base
-=====================
+## cine-udea-movil
 
-A starting project for Ionic that optionally supports using custom SCSS.
+Ionic 1 (AngularJS + Cordova) mobile client for the **CineUdea** cinema listing and reservation project — a university coursework app for a Software Architecture class.
 
-## Using this project
+### What it does
 
-We recommend using the [Ionic CLI](https://github.com/driftyco/ionic-cli) to create new Ionic projects that are based on this project but use a ready-made starter template.
+Provides the mobile front-end for browsing a movie listing ("cartelera"), viewing movie/cinema details, logging in / registering, and reserving seats. It talks to a remote Node/Express + MongoDB API (see the companion `cineUdea` repository) through Angular services (`controladores/auth/auth.service.js`, `usuario.service.js`, etc.).
 
-For example, to start a new Ionic project with the default tabs interface, make sure the `ionic` utility is installed:
+### Tech stack
+
+- Ionic 1 / AngularJS
+- Cordova (for building to Android/iOS)
+- Gulp + Sass build pipeline
+- Bower for front-end dependencies
+
+### Project structure
+
+- `www/controladores/` – AngularJS controllers (login, registro, cartelera, película, reserva, nav)
+- `www/controladores/auth/` – authentication service and HTTP interceptor-style helpers
+- `www/controladores/modal/` – login/registration modal controllers
+- `www/templates/` – view templates
+- `config.xml` – Cordova app configuration
+
+### Running it
 
 ```bash
-$ npm install -g ionic
+npm install
+bower install
+ionic serve
 ```
 
-Then run:
+(Requires the [Ionic CLI](https://ionicframework.com/) and Cordova installed globally.)
 
-```bash
-$ ionic start myProject tabs
-```
+### Context
 
-More info on this can be found on the Ionic [Getting Started](http://ionicframework.com/getting-started) page and the [Ionic CLI](https://github.com/driftyco/ionic-cli) repo.
-
-## Issues
-Issues have been disabled on this repo, if you do find an issue or have a question consider posting it on the [Ionic Forum](http://forum.ionicframework.com/).  Or else if there is truly an error, follow our guidelines for [submitting an issue](http://ionicframework.com/submit-issue/) to the main Ionic repository.
+University coursework project (Software Architecture class). This is the mobile counterpart to the `cineUdea` backend/web project in the same account.
